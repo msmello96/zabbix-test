@@ -1,14 +1,9 @@
 # Configurações Feitas
 
-##Comandos utilizados: 
-
 ## Criar a subnet: 
-
 docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
 
-
-Configurar banco: 
-
+## Configurar banco: 
 docker run --name mysql-server -t \
       -e MYSQL_DATABASE="zabbix" \
       -e MYSQL_USER="zabbix" \
@@ -20,14 +15,13 @@ docker run --name mysql-server -t \
       --character-set-server=utf8 --collation-server=utf8_bin \
       --default-authentication-plugin=mysql_native_password
 
-Configurando Java Gateway      
+## Configurando Java Gateway      
 docker run --name zabbix-java-gateway -t \
       --network=zabbix-net \
       --restart unless-stopped \
       -d zabbix/zabbix-java-gateway:ubuntu-6.0-latest
       
-Configurando Zabbix Server: 
-
+## Configurando Zabbix Server: 
 docker run --name zabbix-server-mysql -t \
       -e DB_SERVER_HOST="mysql-server" \
       -e MYSQL_DATABASE="zabbix" \
@@ -41,8 +35,7 @@ docker run --name zabbix-server-mysql -t \
       -d zabbix/zabbix-server-mysql:ubuntu-6.0-latest
 
       
-Configurando Web Interface: 
-
+## Configurando Web Interface: 
 docker run --name zabbix-web-nginx-mysql -t \
       -e ZBX_SERVER_HOST="zabbix-server-mysql" \
       -e DB_SERVER_HOST="mysql-server" \
