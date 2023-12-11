@@ -1,5 +1,10 @@
 # Configurações Feitas
 
+## Informações Gerais
+Criado 3 containers individuais para cada serviço: Front-end, Zabbix-Server e o Banco MySQL.
+Video do funcionamento dos serviços abaixo: 
+Link: https://drive.google.com/file/d/17BN5ClbaAdSQxxtNrrfVPW-lEZ2KKbb7/view?usp=drive_link
+
 ## Criar a subnet: 
 docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
 
